@@ -1,4 +1,4 @@
-package com.support.chat.model;
+package com.support.chat.model.incoming;
 
 import lombok.Data;
 

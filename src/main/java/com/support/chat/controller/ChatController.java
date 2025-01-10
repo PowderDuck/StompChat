@@ -1,8 +1,7 @@
 package com.support.chat.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.support.chat.model.dto.ChatLoginDto;
+import com.support.chat.model.dto.ChatRegistrationDto;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.support.chat.model.IncomingMessage;
+import com.support.chat.model.incoming.IncomingMessage;
 import com.support.chat.service.ChatService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,24 +23,17 @@ public class ChatController {
     private final ChatService chatService;
 
     @SubscribeMapping("/chat/register")
-    public Map<String, Object> registerChatter(SimpMessageHeaderAccessor headerAccessor)
+    public ChatRegistrationDto registerChatter(SimpMessageHeaderAccessor headerAccessor)
     {
-        var chatId  = chatService.registerChat();
-
-        var registrationData = new HashMap<String, Object>();
-        registrationData.put("user_id", headerAccessor.getSessionId());
-        registrationData.put("chat_id", chatId);
-
-        return registrationData;
+        return chatService.registerChat(
+                headerAccessor.getSessionId());
     }
 
     @SubscribeMapping("/chat/login")
-    public Map<String, Object> loginChatter(SimpMessageHeaderAccessor headerAccessor)
+    public ChatLoginDto loginChatter(SimpMessageHeaderAccessor headerAccessor)
     {
-        var loginData = new HashMap<String, Object>();
-        loginData.put("user_id", headerAccessor.getSessionId());
-
-        return loginData;
+        return chatService.loginChat(
+                headerAccessor.getSessionId());
     }
 
     // Create the MessageMapping for the Mapping of the UserData with the SessionId of the User, Map<String, UserData>;

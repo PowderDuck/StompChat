@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import com.support.chat.constant.ChatConstants;
-import com.support.chat.model.IncomingContentFile;
+import com.support.chat.model.incoming.IncomingContentFile;
 import com.support.chat.service.StorageService;
 
 import lombok.extern.slf4j.Slf4j;

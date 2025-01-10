@@ -1,4 +1,4 @@
-package com.support.chat.utils;
+package com.support.chat.mapper;
 
 import java.time.LocalDateTime;
 
@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.support.chat.constant.ChatConstants;
-import com.support.chat.model.IncomingMessage;
+import com.support.chat.model.incoming.IncomingMessage;
 import com.support.chat.model.Message;
-import com.support.chat.model.OutgoingContent;
-import com.support.chat.model.OutgoingContentFile;
-import com.support.chat.model.OutgoingMessage;
+import com.support.chat.model.outgoing.OutgoingContent;
+import com.support.chat.model.outgoing.OutgoingContentFile;
+import com.support.chat.model.outgoing.OutgoingMessage;
 
 @Component
 public class MessageMapper {

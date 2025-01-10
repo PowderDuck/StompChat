@@ -2,7 +2,7 @@ package com.support.chat.service;
 
 import org.springframework.data.domain.Pageable;
 
-import com.support.chat.model.OutgoingMessage;
+import com.support.chat.model.outgoing.OutgoingMessage;
 
 public interface MessageService {
 

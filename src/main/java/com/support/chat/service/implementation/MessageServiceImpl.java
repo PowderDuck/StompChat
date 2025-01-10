@@ -3,11 +3,11 @@ package com.support.chat.service.implementation;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.support.chat.model.OutgoingMessage;
+import com.support.chat.model.outgoing.OutgoingMessage;
 import com.support.chat.repository.MessageRepository;
 import com.support.chat.repository.dao.MessageDao;
 import com.support.chat.service.MessageService;
-import com.support.chat.utils.MessageMapper;
+import com.support.chat.mapper.MessageMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +26,7 @@ public class MessageServiceImpl implements MessageService {
         var savedMessage = messageRepository.save(
             messageMapper.outgoingToMessage(message));
 
-        log.info(
-            String.format("Created Message with Id %s", savedMessage.getId()));
+        log.info("Created Message with Id [{}]", savedMessage.getId());
 
         return savedMessage.getId();
     }
@@ -47,7 +46,7 @@ public class MessageServiceImpl implements MessageService {
     {
         return messageRepository.findAll(pageable)
             .stream()
-            .map(message -> messageMapper.messageToOutgoing(message))
+            .map(messageMapper::messageToOutgoing)
             .toList();
     }
 
@@ -58,8 +57,7 @@ public class MessageServiceImpl implements MessageService {
 
     public void delete(Long id)
     {
-        log.info(
-            String.format("Deleted Message with Id %s", id));
+        log.info("Deleted Message with Id [{}]", id);
 
         messageRepository.deleteById(id);
     }

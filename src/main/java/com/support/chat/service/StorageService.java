@@ -2,7 +2,7 @@ package com.support.chat.service;
 
 import java.nio.file.Path;
 
-import com.support.chat.model.IncomingContentFile;
+import com.support.chat.model.incoming.IncomingContentFile;
 
 public interface StorageService {
     
